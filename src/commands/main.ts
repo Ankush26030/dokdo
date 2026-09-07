@@ -19,7 +19,7 @@ export async function main (message: Context, parent: Client): Promise<void> {
 
   summary += `\nUsing ${System.memory().rss} at this process.\n`
   const currentGuilds = parent.client.guilds.cache.size
-  const currentUsers = parent.client.guilds.cache.reduce((acc: number, g: any) => acc + (g.memberCount || 0), 0)
+  const currentUsers = parent.client.guilds.cache.reduce((acc, g) => acc + (g.memberCount ?? 0), 0)
 
   if ((parent.client as any).cluster) {
     const cluster = (parent.client as any).cluster

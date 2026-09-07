@@ -24,7 +24,7 @@ export async function main (message: Context, parent: Client): Promise<void> {
   if ((parent.client as any).cluster) {
     const cluster = (parent.client as any).cluster
     const clusterId = cluster.id
-    const shardIds = [...cluster.ids.keys()]
+    const shardIds = cluster.ids as number[]
     summary += `Running on PID ${process.pid} \u2014 Cluster #${clusterId}, Shard(s): [${shardIds.join(', ')}]\n\nThis cluster can see ${currentGuilds.toLocaleString()} guild(s) and ${currentUsers.toLocaleString()} user(s).\n> \u2139\uFE0F Showing current cluster's data only \u2014 bot uses \`discord-hybrid-sharding\`, each cluster handles a subset of total guilds/users.`
   } else if (parent.client.shard) {
     const guilds = await parent.client.shard
